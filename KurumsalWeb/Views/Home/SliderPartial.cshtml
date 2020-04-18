@@ -1,0 +1,46 @@
+﻿@model IEnumerable<KurumsalWeb.Models.Model.Slider>
+    @{
+        Layout = null;
+    }
+
+    <section id="hero" class="d-flex justify-cntent-center align-items-center">
+
+        <div id="heroCarousel" class="container carousel carousel-fade" data-ride="carousel">
+
+            <div class="carousel-inner">
+
+                @foreach (var item in Model)
+                {
+
+                    <div class="carousel-item active">
+                        <div class="carousel-container">
+                            <img src="@item.ResimURL" alt="@item.Baslik" />
+
+                            <h2 class="animated fadeInDown">@item.Baslik</h2>
+                            <p class="animated fadeInUp">@item.Aciklama</p>
+                            <a href="/Home/Hizmet/" class="btn-get-started animated fadeInUp">Devamını oku</a>
+                        </div>
+                    </div>
+
+                    <a class="carousel-control-prev" href="#heroCarousel" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon bx bx-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#heroCarousel" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon bx bx-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+
+
+                }
+            </div>
+
+</section>
+
+
+
+
+
+
+
+

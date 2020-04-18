@@ -1,0 +1,15 @@
+﻿@model IEnumerable<KurumsalWeb.Models.Model.Kategori>
+
+@using KurumsalWeb.Helper;
+
+<div class="sidebar-item categories">
+
+    <ul class="sidebar-item categories">
+        @foreach (var item in Model)
+        {
+            <li><a href="/BlogPost/@SeoHelper.ToSeoUrl(item.KategoriAd).ToLower()/@item.KategoriId">@item.KategoriAd<span>(@item.Blogs.Count())</span></a></li>
+        }
+
+
+    </ul>
+    </div>

@@ -1,0 +1,160 @@
+﻿@model KurumsalWeb.Models.Model.Blog
+@{
+    ViewBag.Title = "BlogDetay";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+<section class="breadcrumbs">
+    <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+            <h2>BlogDetay</h2>
+
+            <ol>
+                <li><a href="index.html">Home</a></li>
+                <li>Blog</li>
+            </ol>
+        </div>
+
+    </div>
+</section><!-- End Blog Section -->
+<!-- ======= Blog Section ======= -->
+<section class="blog" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-lg-8 entries">
+                <h2 class="entry-title">
+                    <a> @Model.Baslik </a><br />
+                </h2>
+                    <a>@Model.Kategori.KategoriAd</a>
+            <br />
+
+               
+                <article class="entry">
+                    
+                    <div class="entry-img">
+                        <img src="@Model.ResimURL" alt="@Model.Baslik" class="img-fluid">
+                    </div>
+
+
+
+                    <div class="entry-content">
+                        <p>
+
+                            @Html.Raw(Model.Icerik)
+                        </p>
+
+                        <div class="read-more">
+
+                        </div>
+                    </div>
+
+                </article><!-- End blog entry -->
+            
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h3>Yorum Yap</h3>
+                        <form >
+                            <div>
+                                <input type="text" id="adsoyad" placeholder="Adınız Soyadınız" required class="form-control" />
+                                <br />
+                                <input type="email" id="eposta" placeholder="Mail Adresiniz" required class="form-control" />
+                                <br />
+                                <textarea typeof="text" id="Icerik" class="form-control"></textarea>
+                                <br />
+
+                                <button type="submit" class="btn btn-success" id="Gonder" value="Yorum Yap">Yorum Yap</button>
+                            </div>
+                        </form>
+                       
+
+                     </div>
+                 </div>
+            <br />
+                <div class="row">
+                    <div>
+                        <h3>Blog Makale Yorumları</h3>
+                        @foreach (var item in Model.Yorum.OrderByDescending(x=>x.YorumId).Where(x=>x.Onay==true))
+                        {
+                            <p>@item.AdSoyad - @item.EPosta</p>
+                            <p>@item.Icerik</p>
+                            <hr />
+                        }
+
+                    </div>
+                </div>
+
+                
+            </div><!-- End blog entries list -->
+
+
+
+            <div class="col-lg-4">
+                <div class="sidebar">
+
+                    <h3 class="sidebar-title">Search</h3>
+                    <div class="sidebar-item search-form">
+                        <form action="">
+                            <input type="text">
+                            <button type="submit"><i class="icofont-search"></i></button>
+                        </form>
+                    </div><!-- End sidebar search formn-->
+
+                    <h3 class="sidebar-title">Kategoriler</h3>
+                    @*<div class="sidebar-item categories">*@
+                    @{
+                        Html.RenderAction("BlogKategoriPartial", "Home");
+                    }
+
+                </div><!-- End sidebar categories-->
+
+                <h3 class="sidebar-title">Son Blog Kayıtları</h3>
+                <div class="sidebar-item recent-posts">
+                    @{
+                        Html.RenderAction("BlogKayitPartial", "Home");
+                    }
+
+                    <div class="post-item clearfix">
+                        <img src="assets/img/recent-posts-5.jpg" alt="">
+                        <h4><a href="blog-single.html">Et dolores corrupti quae illo quod dolor</a></h4>
+                        <time datetime="2020-01-01">Jan 1, 2020</time>
+                    </div>
+                </div><!-- End sidebar recent posts-->
+
+
+
+            </div><!-- End sidebar -->
+
+        </div><!-- End blog sidebar -->
+
+    </div><!-- End .row -->
+    </div><!-- End .container -->
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+</section>
+<script src="~/Content/SiteLayout/js/jquery.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#Gonder").click(function () {
+            var adisoyadi = $("#adsoyad").val();
+            var epostasi = $("#eposta").val();
+            var yorumunuz = $("#Icerik").val();
+            $.ajax({
+
+                url: '/Home/YorumYap/',
+                data: { adsoyad: adisoyadi, eposta: epostasi, Icerik: yorumunuz ,blogid:@Model.BlogId },
+                type: 'POST',
+                dataType: 'json',
+                success: function (data) {
+                    alert("Yorumunuz eklendi,kontrol edildikten sonra yayınlanacaktır. ");
+                }
+            });
+
+
+        });
+
+    })
+    
+</script>
+

@@ -1,0 +1,56 @@
+﻿@{
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+    ViewBag.Title = "Ana Sayfa";
+}
+
+<section id="hero" class="d-flex justify-cntent-center align-items-center">
+    <div id="heroCarousel" class="container carousel carousel-fade" data-ride="carousel">
+
+            @{
+                Html.RenderAction("SliderPartial", "Home");
+            }
+    
+        </div>
+            </section>
+
+            <main id="main">
+
+                <section class="features">
+                    <div class="container">
+
+                        <div class="section-title">
+                            <h2>Hizmetlerimiz</h2>
+
+                        </div>
+
+                        <div class="row" data-aos="fade-up">
+
+                            @foreach (var item in ViewBag.Hizmetler)
+                            {
+                                <div class="center" data-aos="fade-up">
+                                    <div class="col-md-12 ">
+
+                                        <img src="@item.ResimURL" class="img-fluid " alt="@item.Aciklama">
+                                    </div>
+
+                                    <div class="col-md-7 pt-4">
+                                        <h3>@item.Baslik</h3>
+
+                                        <ul>
+                                            <li>
+                                                <i class="icofont-check"></i>
+                                                @Html.Raw(item.Aciklama)
+                                            </li>
+                                            <h6 class="font-italic">
+                                                @Html.Raw(item.Aciklama)
+                                            </h6>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            }
+
+                        </div>
+                    </div>
+                </section>
+            </main>

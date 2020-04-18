@@ -1,0 +1,53 @@
+﻿@model IEnumerable<KurumsalWeb.Models.Model.Hizmet>
+@{
+    ViewBag.Title = "Hizmetlerimiz";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+<main id="main">
+    <section class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>Hizmetlerimiz</h2>
+                <ol>
+                    <li><a href="/Home/Index/">Home</a></li>
+                    <li>Hizmetlerimiz</li>
+                </ol>
+            </div>
+
+        </div>
+    </section> 
+
+    <section class="portfolio">
+        <div class="container">
+
+            <div class="row portfolio-container" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
+
+                @foreach (var item in Model)
+                {
+              
+                        <div class="col-lg-6 col-md-4 filter-app">
+                            <div class="portfolio-item">
+                                <div class="col-md-12">
+                                    <img src="@item.ResimURL" class="img-fluid" alt="@item.Aciklama">
+                                </div>
+                                
+                                <div class="portfolio-info">
+                                    <h3><a href="@item.ResimURL" data-gall="portfolioGallery" class="venobox" title="@item.Baslik">@item.Baslik</a></h3>
+                                    <a href="@item.ResimURL" data-gall="portfolioGallery" class="venobox" title="@item.Baslik 1">@Html.Raw(item.Aciklama)<i class="icofont-plus"></i></a>
+                                </div>
+                            </div>
+
+                        </div>
+
+                }
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+    
+    

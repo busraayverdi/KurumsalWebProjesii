@@ -1,0 +1,91 @@
+﻿<footer id="footer" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
+
+    <div class="footer-newsletter">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-6">
+                    <h4>Kurumsal Web Sitesi Projesi</h4>
+                    <p>Üye olabilirsiniz</p>
+                </div>
+                <div class="col-lg-6">
+                    <form action="" method="post">
+                        <input type="email" name="email"><input type="submit" value="Abone ol">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-3 col-md-6 footer-links">
+                    <h4>Menü</h4>
+                    <ul>
+                        <li><i class="bx bx-chevron-right"></i> <a href="/AnaSayfa/">AnaSayfa</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="/Hakkimizda/">Hakkımızda</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="/Blog/">Blog</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="/Hizmet/">Hizmetler</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="/İletisim/">İletişim</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6 footer-contact">
+                    <h4>Bize Ulaşabilirsiniz</h4>
+                    <address>
+                        <strong>@ViewBag.İletisim.Adres</strong><br>
+
+                    </address>
+                    <p>
+                        <i class="icon-phone"></i>Tel:@ViewBag.İletisim.Telefon<br>
+                        <i class="icon-phone"></i>Whatsapp:@ViewBag.İletisim.Whatsapp<br>
+                        <i class="icon-envelope-alt"></i>Fax:@ViewBag.İletisim.Fax
+                       
+                    </p>
+
+                </div>
+
+                <div class="col-lg-3 col-md-6 footer-links">
+                    <h4>Hizmetlerimiz</h4>
+                   
+                    @foreach (var item in ViewBag.Hizmetler)
+                    {
+                        <img src="@item.ResimURL" width="75" height="30"></img>
+                       
+                    }
+
+                </div>
+
+                <div class="col-lg-3 col-md-6 footer-info">
+                    <h3>Son Blog Yazıları</h3>
+                    <ul class="link-list">
+                        @foreach (var item in ViewBag.Blog)
+                        {
+                            <li><a href="/Home/BlogDetay/@item.BlogId">@item.Baslik</a></li>
+                        }
+                    </ul>
+                    <div class="social-links mt-3">
+
+                        <a href="www.twitter.com/@ViewBag.İletisim.Twitter" class="twitter"><i class="bx bxl-twitter"></i></a>
+                        <a href="www.instagram.com/@ViewBag.İletisim.Instagram" class="instagram"><i class="bx bxl-instagram"></i></a>
+                        <a href="www.facebook.com/@ViewBag.İletisim.Facebook" class="facebook"><i class="bx bxl-facebook"></i></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="copyright">
+            <p>@DateTime.Now.Year &copy; Copyright <strong><span>Kurumsal Web Sitesi</span></strong>. Tüm Hakları Gizlidir</p>
+        </div>
+        <div class="credits">
+
+
+            Designed by <a href="https://kurumsalweb.com/">KurumsalWeb</a>
+        </div>
+    </div>
+</footer>
